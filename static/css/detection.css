@@ -1,0 +1,114 @@
+.body {
+    background: #0f1228;
+    overflow-x: hidden;
+    color: #e7e9f0;
+    font-family: 'Lato', sans-serif;
+}
+
+.wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 60px;
+    padding: 8px 15px;
+    width:300px;
+    border-width: 0;
+    background-color: rgb(11, 26, 43);
+    color: #e7e9f0;
+    border-radius: 50px;
+    box-shadow: 0 0 5px rgba(red, green, blue, 0.5);
+}
+.header-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 60px;
+}
+
+.head-image {
+    width: 250px;
+}
+
+
+.wrapper:hover {
+    
+    background:rgb(75, 24, 1);
+}
+    
+.hr-style{
+    padding: 8px 15px;
+    width: 110px;
+    border-width: 0;
+    background: rgb(23, 23, 26);
+    color: #e7e9f0;
+    border-radius: 50px;
+    font-size: 20px;
+    margin-right: 10px;
+    box-shadow: 0 0 5px rgba(red, green, blue, 0.5);
+}
+.min-style{
+    padding: 8px 15px;
+    width: 140px;
+    border-width: 0;
+    background: rgb(23, 23, 26);
+    color: #e7e9f0;
+    border-radius: 50px;
+    font-size: 20px;
+    margin-right: 10px;
+    box-shadow: 0 0 5px rgba(red, green, blue, 0.5);   
+}
+
+.sec-style{
+    padding: 8px 15px;
+    width: 130px;
+    border-width: 0;
+    background: rgb(23, 23, 26);
+    color: #e7e9f0;
+    border-radius: 50px;
+    font-size: 20px;
+    margin-right: 10px;
+    margin-top: 3px;
+    box-shadow: 0 0 5px rgba(red, green, blue, 0.5);  
+}
+
+.button-text{
+    padding: 8px 15px;
+    width: 250px;
+    border-width: 0;
+    background: blue;
+    color: #e7e9f0;
+    border-radius: 50px;
+    font-size: 20px;
+    box-shadow: 0 0 5px rgba(red, green, blue, 0.5);
+}
+.button-text:hover {
+    background-color: rgb(8, 8, 8);
+}
+
+.label-design{
+    text-align: center;
+}
+
+.search-input {
+    padding: 8px 15px;
+    font-size: 20px;
+    width: 350px;
+    border-width: 0;
+    background: #a592f2;
+    color: darkslateblue;
+    border-radius: 50px;
+    box-shadow: 0 0 5px rgba(red, green, blue, 0.5);
+    margin-bottom: 8px;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-input::placeholder {
+    color: darkslateblue;
+}
+
+.search-input:focus {
+    outline: none;
+}
+
