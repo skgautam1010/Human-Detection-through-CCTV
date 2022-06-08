@@ -121,7 +121,8 @@ def detect_human(start_time_hr,start_time_min,start_time_sec,end_time_hr,end_tim
     font = cv2.FONT_HERSHEY_PLAIN
     starting_time = time.time()
     #frame_id = 0
-    
+    current_time=datetime.now().strftime("%d-%m-%Y-%H-%M-%S")
+    output_video=cv2.VideoWriter(f"videos/{current_time}.mp4",fourcc,20,frame_size)    
 
     #start time and end time for the intrusion detection system
     start_time=start_time_hr+":"+start_time_min+":"+start_time_sec
@@ -196,11 +197,11 @@ def detect_human(start_time_hr,start_time_min,start_time_sec,end_time_hr,end_tim
                     timer_started=False
                 else:
                     detecting_face=True
-                    current_time=datetime.now().strftime("%d-%m-%Y-%H-%M-%S")
-                    output_video=cv2.VideoWriter(f"videos/{current_time}.mp4",fourcc,20,frame_size)
+                    # current_time=datetime.now().strftime("%d-%m-%Y-%H-%M-%S")
+                    # output_video=cv2.VideoWriter(f"videos/{current_time}.mp4",fourcc,20,frame_size)
                     print("Started Recording")
-                    #sendsms()
-                    #sendmail()
+                    sendsms()
+                    sendmail()
                     print("Mail Sent")
             elif detecting_face:
                 if timer_started:
@@ -271,6 +272,7 @@ def index():
             if (password==temp_pass):
                 session['email']=temp
                 flash("Login Successful","success")
+                return redirect('/detection')
             else:
                 flash("Invalid Credentials","success")
         else:
