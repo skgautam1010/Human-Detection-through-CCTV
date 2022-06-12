@@ -171,9 +171,10 @@ def detect_human(start_time_hr,start_time_min,start_time_sec,end_time_hr,end_tim
 
         indexes = cv2.dnn.NMSBoxes(boxes, confidences, 0.4, 0.3)
         cv2.putText(frame, "DateTime: " + str(datetime.now().strftime("%d-%m-%Y-%H:%M:%S")), (10, 50), font, 2, (0, 0, 0), 3)
-        cv2.putText(frame, "Press 'q' to quit",((10,430)), font, 2, (255,0,0), 2)
+        cv2.putText(frame, "Press 'q' to quit",((10,670)), font, 2, (255,0,0), 2)
         time_now=datetime.now().strftime("%H:%M:%S")
         if time_now>=start_time and time_now<=end_time:
+            label=""
             for i in range(len(boxes)):
                 if i in indexes:
                     x, y, w, h = boxes[i]
@@ -181,7 +182,6 @@ def detect_human(start_time_hr,start_time_min,start_time_sec,end_time_hr,end_tim
                     confidence = confidences[i]
                     color = colors[class_ids[i]]
                     if label=="person":
-                        #out = cv2.VideoWriter('output.avi',cv2.VideoWriter_fourcc(*'MJPG'),15.,(640,480))
                         cv2.rectangle(frame, (x, y), (x + w, y + h), color, 2)
                         cv2.putText(frame, label , (x, y + 30), font, 2, color, 2)
                         #cv2.putText(frame, label + " " + str(round(confidence, 2)), (x, y + 30), font, 2, color, 2)
@@ -191,17 +191,17 @@ def detect_human(start_time_hr,start_time_min,start_time_sec,end_time_hr,end_tim
                         
             
             #video making
-            if len(faces) + len(bodies) > 0:
+            if (len(faces) + len(bodies) > 0) or (label=="person"):
                 #cv2.imwrite('images/frames.jpg', frame)
                 if detecting_face:
                     timer_started=False
                 else:
                     detecting_face=True
-                    # current_time=datetime.now().strftime("%d-%m-%Y-%H-%M-%S")
-                    # output_video=cv2.VideoWriter(f"videos/{current_time}.mp4",fourcc,20,frame_size)
+                    current_time=datetime.now().strftime("%d-%m-%Y-%H-%M-%S")
+                    output_video=cv2.VideoWriter(f"videos/{current_time}.mp4",fourcc,20,frame_size)
                     print("Started Recording")
-                    sendsms()
-                    sendmail()
+                    #sendsms()
+                    #sendmail()
                     print("Mail Sent")
             elif detecting_face:
                 if timer_started:
