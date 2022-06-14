@@ -4,60 +4,16 @@ import time
 from datetime import datetime
 import smtplib
 import imghdr
-import time,re
+import re
 from email.message import EmailMessage
 # importing the client from the twilio
 from twilio.rest import Client
-
+from credentials import sendsms, sendmail
 
 # Loading video
 #rtsp_link=input("Enter the RTSP Link: ")
 #cap = cv2.VideoCapture(rtsp_link)
 #rtsp://admin:admin@123@192.168.1.108:554
-
-
-def sendsms():
-
-    account_sid = 'AC6dd4ea3d0205cebdb3af3a78692f7025'
-    auth_token = 'b07b4d4cfd698f19f5ba03d719d58a5e'
-    client = Client(account_sid, auth_token)
-
-    message = client.messages.create(
-                                body='Alert! Someone has intruded, Please reach out to the place as soon as possible and take necessary actions. For more details please check the mail.',
-                                from_='+19472253236',
-                                status_callback='http://postb.in/1234abcd',
-                                to='+917992346306'
-                            )
-
-    #print(message.sid)
-    print("SMS Sent!")
-
-
-    
-def sendmail():
-    Sender_Email = "sonukumargautam83614@gmail.com"
-    Reciever_Email = "sonukumargautamsingh@gmail.com"
-    #Password = input('Enter your email account password: ')
-    timestr = time.strftime("%y-%m-%d-%H-%M-%S")
-    phoneNumRegex = re.compile(r'(\d\d-\d\d-\d\d)-(\d\d-\d\d-\d\d)')
-    mo = phoneNumRegex.search(timestr)
-    path=mo.group(1)
-    newMessage = EmailMessage()                         
-    newMessage['Subject'] = "Alert Alert!" 
-    newMessage['From'] = Sender_Email
-    newMessage['To'] = Reciever_Email 
-    newMessage.set_content('Someone Intruded in the restricted area!\nPlease check the attached screenshot and take the necessary action immediately.') 
-    new='images/frames.jpg'
-    with open(new, 'rb') as f:
-        image_data = f.read()
-        image_type = imghdr.what(f.name)
-        image_name = f.name
-
-    newMessage.add_attachment(image_data, maintype='image', subtype=image_type, filename=image_name)
-
-    with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
-        smtp.login(Sender_Email, 'qxjqhfuivrtciwli')              
-        smtp.send_message(newMessage)
    
 
 def detect_human():
@@ -169,8 +125,8 @@ def detect_human():
                     #current_time=datetime.now().strftime("%d-%m-%Y-%H-%M-%S")
                     #output_video=cv2.VideoWriter(f"videos/{current_time}.mp4",fourcc,20,frame_size)
                     print("Started Recording")
-                    #sendsms()
-                    #sendmail()
+                    sendsms()
+                    sendmail()
                     print("Mail Sent")
             elif detecting_face:
                 if timer_started:

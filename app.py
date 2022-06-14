@@ -8,6 +8,7 @@ import smtplib
 import imghdr
 import time,re
 from email.message import EmailMessage
+from credentials import sendmail, sendsms
 # importing the client from the twilio
 from twilio.rest import Client
 from flask.helpers import flash
@@ -41,56 +42,14 @@ class Login(db.Model):
     email=db.Column(db.String(255), unique=True, nullable=False)
     password=db.Column(db.String(255), unique=True, nullable=False)
 
-def sendsms():
-
-    account_sid = 'AC6dd4ea3d0205cebdb3af3a78692f7025'
-    auth_token = 'b07b4d4cfd698f19f5ba03d719d58a5e'
-    client = Client(account_sid, auth_token)
-
-    message = client.messages.create(
-                                body='Alert! Someone has intruded, Please reach out to the place as soon as possible and take necessary actions. For more details please check the mail.',
-                                from_='+19472253236',
-                                status_callback='http://postb.in/1234abcd',
-                                to='+917992346306'
-                            )
-
-    #print(message.sid)
-    print("SMS Sent!")
 
 
-    
-def sendmail():
-    Sender_Email = "sonukumargautam83614@gmail.com"
-    Reciever_Email = "sonukumargautamsingh@gmail.com"
-    #Password = input('Enter your email account password: ')
-    timestr = time.strftime("%y-%m-%d-%H-%M-%S")
-    phoneNumRegex = re.compile(r'(\d\d-\d\d-\d\d)-(\d\d-\d\d-\d\d)')
-    mo = phoneNumRegex.search(timestr)
-    path=mo.group(1)
-    newMessage = EmailMessage()                         
-    newMessage['Subject'] = "Alert Alert!" 
-    newMessage['From'] = Sender_Email
-    newMessage['To'] = Reciever_Email 
-    newMessage.set_content('Someone Intruded in the restricted area!\nPlease check the attached screenshot and take the necessary action immediately.') 
-    new='images/frames.jpg'
-    with open(new, 'rb') as f:
-        image_data = f.read()
-        image_type = imghdr.what(f.name)
-        image_name = f.name
-
-    newMessage.add_attachment(image_data, maintype='image', subtype=image_type, filename=image_name)
-
-    with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
-        smtp.login(Sender_Email, 'qxjqhfuivrtciwli')              
-        smtp.send_message(newMessage)
-
-
-def detect_human(start_time_hr,start_time_min,start_time_sec,end_time_hr,end_time_min,end_time_sec):
+def detect_human(rtsp_link,start_time_hr,start_time_min,start_time_sec,end_time_hr,end_time_min,end_time_sec):
     
     
     # Loading video
     #rtsp_link=input("Enter the RTSP Link: ")
-    cap = cv2.VideoCapture(0)
+    cap = cv2.VideoCapture(rtsp_link)
     #rtsp://admin:admin@123@192.168.1.108:554
     #cap=cv2.VideoCapture(0)
 
@@ -203,6 +162,7 @@ def detect_human(start_time_hr,start_time_min,start_time_sec,end_time_hr,end_tim
                     #sendsms()
                     #sendmail()
                     print("Mail Sent")
+                    
             elif detecting_face:
                 if timer_started:
                     if time.time()-detection_stopped_time >= Seconds_to_record_after_detection:
@@ -339,7 +299,7 @@ def predict():
          
         
         #print("post request")
-        detect_human(start_time_hr,start_time_min,start_time_sec,end_time_hr,end_time_min,end_time_sec)
+        detect_human(rtsp_link,start_time_hr,start_time_min,start_time_sec,end_time_hr,end_time_min,end_time_sec)
         flash("Surveillance Stopped","success")
         #print("again post")
     
