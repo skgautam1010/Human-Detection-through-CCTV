@@ -49,10 +49,9 @@ def detect_human(rtsp_link,start_time_hr,start_time_min,start_time_sec,end_time_
     
     # Loading video
     #rtsp_link=input("Enter the RTSP Link: ")
-    cap = cv2.VideoCapture(rtsp_link)
+    #cap = cv2.VideoCapture(rtsp_link)
     #rtsp://admin:admin@123@192.168.1.108:554
-    #cap=cv2.VideoCapture(0)
-
+    cap=cv2.VideoCapture(0)
     net = cv2.dnn.readNet("weights/yolov3-tiny.weights", "cfg/yolov3-tiny.cfg")
     classes = []
 
@@ -159,8 +158,9 @@ def detect_human(rtsp_link,start_time_hr,start_time_min,start_time_sec,end_time_
                     current_time=datetime.now().strftime("%d-%m-%Y-%H-%M-%S")
                     output_video=cv2.VideoWriter(f"videos/{current_time}.mp4",fourcc,20,frame_size)
                     print("Started Recording")
-                    #sendsms()
-                    #sendmail()
+                    email_store=session['email']
+                    sendsms()
+                    sendmail(email_store)
                     print("Mail Sent")
                     
             elif detecting_face:
@@ -298,10 +298,8 @@ def predict():
         end_time_sec=request.form.get('end_sec')
          
         
-        #print("post request")
         detect_human(rtsp_link,start_time_hr,start_time_min,start_time_sec,end_time_hr,end_time_min,end_time_sec)
-        flash("Surveillance Stopped","success")
-        #print("again post")
+        flash("Window Closed","success")
     
     return render_template('detection.html')
        
