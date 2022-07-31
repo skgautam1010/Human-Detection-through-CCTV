@@ -1,11 +1,11 @@
 # Human-Detection-through-CCTV
 
 
-CCTV cameras as a piece of technology has improved the livelihood of several individuals, many testimonies justifying the need of these 
-devices can be collected and put forth to advocate the need for technological advancements
+Closed Circuit Television CCTV cameras as a piece of technology has improved the livelihood of several individuals, many testimonies 
+justifying the need of these devices can be collected and put forth to advocate the need for technological advancements.
 
 The traditional surveillance system has not been able to solve the issue of safeguarding the restricted areas effectively. 
-The cameras do not notify the owner about the crime or the unethical activity happening at that particular moment. 
+The cameras do not notify the owner about the crime or the unethical activity happening at that particular moment because there is no use of Computer Vision. 
 Other concern is that cameras keep on recording each and every activity, in this process of recording each and every activity it becomes 
 a very tedious process to find the particular video clip when the crime actually happened. To record and store every activity requires huge 
 amount of storage space leading to the wastage of memory.
@@ -14,6 +14,20 @@ These problems would be removed by building a smart CCTV surveillance camera tha
 and automatically stops recording when there is no human in the frame. The owner can be notified the moment human enters the frame through 
 alarm systems such as sending SMS and Emails. YOLO algorithm can be used to detect the presence of humans in the live video frame of CCTV and 
 for capturing the images and videos OpenCV can be used.
+
+Hardware Used
+
+IP Configurable CCTV Camera
+8 Port Network Switch (TL-SG1008DV8)
+2 Power Over Ethernet (POE) Cables
+Laptop with minimum 4GB RAM
+
+Software Used
+
+Windows or Linux Operating System
+Python3, HTML5, CSS3, Bootstrap5, Flask, Sqlite3
+Visual Studio Code
+YOLO, OpenCV
 
 Setup to be done as shown in figure.
 ![1](https://user-images.githubusercontent.com/63490088/182016625-619ff9b4-3b58-4524-832a-bf7c32d9b437.png)
