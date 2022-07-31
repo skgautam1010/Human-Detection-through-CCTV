@@ -17,16 +17,16 @@ for capturing the images and videos OpenCV can be used.
 
 Hardware Used
 
-IP Configurable CCTV Camera
-8 Port Network Switch (TL-SG1008DV8)
-2 Power Over Ethernet (POE) Cables
+IP Configurable CCTV Camera,
+8 Port Network Switch,
+2 Power Over Ethernet (POE) Cables,
 Laptop with minimum 4GB RAM
 
 Software Used
 
-Windows or Linux Operating System
-Python3, HTML5, CSS3, Bootstrap5, Flask, Sqlite3
-Visual Studio Code
+Windows or Linux Operating System,
+Python3, HTML5, CSS3, Bootstrap5, Flask, Sqlite3,
+Visual Studio Code,
 YOLO, OpenCV
 
 Setup to be done as shown in figure.
