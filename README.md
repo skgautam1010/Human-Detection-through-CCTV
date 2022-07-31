@@ -15,16 +15,26 @@ and automatically stops recording when there is no human in the frame. The owner
 alarm systems such as sending SMS and Emails. YOLO algorithm can be used to detect the presence of humans in the live video frame of CCTV and 
 for capturing the images and videos OpenCV can be used.
 
+Setup to be done as shown in figure.
+![1](https://user-images.githubusercontent.com/63490088/182016625-619ff9b4-3b58-4524-832a-bf7c32d9b437.png)
+
+![2](https://user-images.githubusercontent.com/63490088/182016676-57dc3664-929b-4d74-9b6f-536aa54dee69.png)
+
 
 Downloading and Installation of Source code and other Dependencies
 
 To download the weights file and the configuration file for the use of pre-trained YOLO
-Algorithm. Visit the following link.
+Algorithm. 
+Visit the following link.
+
 https://pjreddie.com/darknet/yolo/
+
 This is optional as the weights and configuration files are already present in the source code.
 For this project the weights and configuration file of YOLO version3 has been downloaded.
 To install the complete source code in to local system, type the below command in terminal
+
 git clone https://github.com/skgautam1010/Human-Detection-through-CCTV.git
+
 Download Pip. To download pip the following command can be used
 sudo apt update
 sudo apt install python3-pip
@@ -54,3 +64,7 @@ python3 app.py
 
 Go to the browser and type localhost:5000 to see the project up and running. The following
 web page should appear which shows the project is executed successfully.
+
+![3](https://user-images.githubusercontent.com/63490088/182016848-1caee7ac-a773-490b-be17-58b8c2c7ea7c.png)
+
+![4](https://user-images.githubusercontent.com/63490088/182017127-1fbb8103-bc8c-4f82-bab4-1ea87530483c.png)
