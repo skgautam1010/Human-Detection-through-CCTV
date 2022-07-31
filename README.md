@@ -14,3 +14,43 @@ These problems would be removed by building a smart CCTV surveillance camera tha
 and automatically stops recording when there is no human in the frame. The owner can be notified the moment human enters the frame through 
 alarm systems such as sending SMS and Emails. YOLO algorithm can be used to detect the presence of humans in the live video frame of CCTV and 
 for capturing the images and videos OpenCV can be used.
+
+
+Downloading and Installation of Source code and other Dependencies
+
+To download the weights file and the configuration file for the use of pre-trained YOLO
+Algorithm. Visit the following link.
+https://pjreddie.com/darknet/yolo/
+This is optional as the weights and configuration files are already present in the source code.
+For this project the weights and configuration file of YOLO version3 has been downloaded.
+To install the complete source code in to local system, type the below command in terminal
+git clone https://github.com/skgautam1010/Human-Detection-through-CCTV.git
+Download Pip. To download pip the following command can be used
+sudo apt update
+sudo apt install python3-pip
+pip install pipenv
+
+Setup the virtual environment before downloading other dependencies.
+Open terminal and go to the directory where project is located, then use the below command
+pipenv shell
+Download the other required libraries and packages
+To download python3 use the following link
+https://realpython.com/installing-python
+
+To download all required packages and libraries, requirements.txt file has been created this
+helps in downloading all the libraries with their versions with just a single command.
+Run the following command in the virtual environment to download all the required
+dependencies.
+
+pip3 install -r requirements.txt
+
+After downloading all the required packages migrate the complete project to Visual Studio
+Code for better visibility of the entire project.
+Activate the virtual environment with the command pipenv shell.
+The project has the app.py file which is the main file to be executed.
+Type the following command
+
+python3 app.py
+
+Go to the browser and type localhost:5000 to see the project up and running. The following
+web page should appear which shows the project is executed successfully.
