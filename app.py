@@ -17,8 +17,8 @@ from sqlalchemy import create_engine
 
 app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 1
-app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////home/skg/Documents/YOLO-Realtime-Human-Detection/example.db'
+app.secret_key = b'_5#]/'
+app.config['SQLALCHEMY_DATABASE_URI'] = '*'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
@@ -50,7 +50,7 @@ def detect_human(rtsp_link,start_time_hr,start_time_min,start_time_sec,end_time_
     # Loading video
     #rtsp_link=input("Enter the RTSP Link: ")
     #cap = cv2.VideoCapture(rtsp_link)
-    #rtsp://admin:admin@123@192.168.1.108:554
+    #rtsp://admin:admin3@192.123.1.1
     cap=cv2.VideoCapture(0)
     net = cv2.dnn.readNet("weights/yolov3-tiny.weights", "cfg/yolov3-tiny.cfg")
     classes = []
@@ -144,42 +144,9 @@ def detect_human(rtsp_link,start_time_hr,start_time_min,start_time_sec,end_time_
                         cv2.putText(frame, label , (x, y + 30), font, 2, color, 2)
                         #cv2.putText(frame, label + " " + str(round(confidence, 2)), (x, y + 30), font, 2, color, 2)
                         #image capturing
-                        cv2.imwrite('images/frames.jpg', frame)
                         
                         
-            
-            #video making
-            if (len(faces) + len(bodies) > 0) or (label=="person"):
-                #cv2.imwrite('images/frames.jpg', frame)
-                if detecting_face:
-                    timer_started=False
-                else:
-                    detecting_face=True
-                    current_time=datetime.now().strftime("%d-%m-%Y-%H-%M-%S")
-                    output_video=cv2.VideoWriter(f"videos/{current_time}.mp4",fourcc,20,frame_size)
-                    print("Started Recording")
-                    email_store=session['email']
-                    sendsms()
-                    sendmail(email_store)
-                    print("Mail Sent")
-                    
-            elif detecting_face:
-                if timer_started:
-                    if time.time()-detection_stopped_time >= Seconds_to_record_after_detection:
-                        detecting_face=False
-                        timer_started=False
-                        output_video.release()
-                        print("Stopped Recording")
-                else:
-                    timer_started=True
-                    detection_stopped_time=time.time()
-
-
-            if detecting_face:
-                output_video.write(frame)
-        
-
-
+       
 
         #elapsed_time = time.time() - starting_time
         #fps = frame_id / elapsed_time
